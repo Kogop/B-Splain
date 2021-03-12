@@ -43,7 +43,7 @@ int NeobhodimayaFunksia4tobiVMainNeLezt() {
 	
 	//rtrtrdrtyrur
 
-
+	//trhrthrhr
 	return 1;
 }
 
