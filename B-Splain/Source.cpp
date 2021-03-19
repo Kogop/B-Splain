@@ -7,12 +7,13 @@ const int n = 5;//колличество разбиений
 const double a = 0;//начало
 const double b = 1;//конец
 const double h = (b-a)/n; //h = (b-a)/n   шаг
+const double h1 = 0.00001;
 const double param = 0.3;//просто параметр для погрешности, зануляя его, мы уменьшаем погрешность
 
 double A[n]; double B[n]; double C[n]; double D[n]; double F[n];//double cMatrix[n];
 double C1[n-1][n];
+double Splain_[n];
 
-//need this change to push to repository
 double f(double x) {
 
 	return 0.0 - 0.3 * sin(4 * x / 10 + 0.7) + 0.7 * sin(0.5 * x - 0.9) * sin(-1.0 * x);
@@ -49,7 +50,7 @@ int NeobhodimayaFunksia4tobiVMainNeLezt() {
 	for (int i = 0; i < n; i++)
 	{
 		F[i] = f(a + i * h);
-		//cout << F[i] << endl;
+		cout << F[i] << endl;
 	}
 
 	for (int i = 1; i <= n - 1; i++)  // delaem matrix C
@@ -65,7 +66,7 @@ int NeobhodimayaFunksia4tobiVMainNeLezt() {
 					C1[i][j + 1] = 1;
 				}
 				if (j == n - 1) {
-					C1[i][j] = 3.0 * (F[i] - 2.0 * F[i + 1] + F[i + 2]) / (h * h);
+					C1[i][j] = 3.0 * (F[i] - 2.0 * F[i + 1] + F[i + 2]) / pow(h, 2);
 				}
 			}
 		
@@ -101,11 +102,27 @@ int NeobhodimayaFunksia4tobiVMainNeLezt() {
 	//trhrthrhr
 	return 1;
 }
+void Splain()
+{
+	for (int i = 0; i < n; i++) 
+	{
+		for (int x = a; x <= b; x += h1) 
+		{
+		//	if ((x >= a + i * h) && (x <= a + (i + 1) * h))
+			//{
+				Splain_[i] = A[i] + B[i] * (x - (a + i * h)) + C[i] * pow((x - (a + i * h)), 2) + D[i] * pow((x - (a + i * h)), 3);
+				//file << x << "	" << Y << endl;
+		//	}
+		}
+		cout << Splain_[i] << endl;
+	}
 
+}
 
 int main (){
 
 	//cout << B_Splain(0.5) << endl;
 	NeobhodimayaFunksia4tobiVMainNeLezt();
+	Splain();
 	return 1;
 }
