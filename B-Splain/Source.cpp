@@ -97,7 +97,7 @@ int NeobhodimayaFunksia4tobiVMainNeLezt() {
 	// cout << MatrixC[i][5] << endl;
 	}
 	
-	//rtrtrdrtyrur
+	//rtrtrdrtyrurgr
 
 	//trhrthrhr
 	return 1;
@@ -106,7 +106,7 @@ void Splain()
 {
 	for (int i = 0; i < n; i++) 
 	{
-		for (int x = a; x <= b; x += h1) 
+		for (double x = a; x <= b; x += h1) 
 		{
 		//	if ((x >= a + i * h) && (x <= a + (i + 1) * h))
 			//{
@@ -120,7 +120,7 @@ void Splain()
 }
 
 int main (){
-
+	\
 	//cout << B_Splain(0.5) << endl;
 	NeobhodimayaFunksia4tobiVMainNeLezt();
 	Splain();
