@@ -50,7 +50,11 @@ int NeobhodimayaFunksia4tobiVMainNeLezt() {
 	for (int i = 0; i < n+2; i++)
 	{
 		F[i] = f(a + i * h);
-		//cout << F[i] << endl;
+		if (i<n)
+		{
+			cout << F[i] << endl;
+		}
+		
 	}
 
 	for (int i = 0; i < n - 1; i++)  // delaem matrix C
@@ -96,14 +100,14 @@ int NeobhodimayaFunksia4tobiVMainNeLezt() {
 	Gauss(0, C1);
 
 			//Заполнение коэфф С
-			C[0] = 0;
-			C[n] = 0;
+			
+			
 			for (int i = 1; i < n; i++) 
 			{
 				C[i] = C1[i - 1][n - 1];
 				//	cout << C1[i-1][n-1] << endl;
 			}
-
+			C[n] = 0;C[0] = 0;
 			//заполнение А, B, D
 			for (int i = 0; i < n; i++) 
 			{
@@ -129,20 +133,20 @@ void Splain()
 	{
 		for (double x = a; x <= b; x += h1) 
 		{
-		//	if ((x >= a + i * h) && (x <= a + (i + 1) * h))
-			//{
+			if ((x >= a + i * h) && (x <= a + (i + 1) * h))
+			{
 				Splain_[i] = A[i] + B[i] * (x - (a + i * h)) + C[i] * pow((x - (a + i * h)), 2) + D[i] * pow((x - (a + i * h)), 3);
 				//file << x << "	" << Y << endl;
-		//	}
+			}
 		}
-		//cout << Splain_[i] << endl;
+		cout << Splain_[i] << endl;
 	}
 
 }
 
 int main (){
 	
-	//cout << B_Splain(0.5) << endl;
+	cout << "f=" << f(1) << endl;
 	NeobhodimayaFunksia4tobiVMainNeLezt();
 	Splain();
 	return 1;
