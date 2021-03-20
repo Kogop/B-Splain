@@ -47,55 +47,76 @@ void Gauss(int k, double Matrix[n - 1][n]) {
 
 
 int NeobhodimayaFunksia4tobiVMainNeLezt() {
-	for (int i = 0; i < n; i++)
+	for (int i = 0; i < n+2; i++)
 	{
 		F[i] = f(a + i * h);
-		cout << F[i] << endl;
+		//cout << F[i] << endl;
 	}
 
-	for (int i = 1; i <= n - 1; i++)  // delaem matrix C
+	for (int i = 0; i < n - 1; i++)  // delaem matrix C
+	{
+		for (int j = 0; j < n; j++)
 		{
-			for (int j = 0; j < n; j++) {
-				if ((i == j) && (i == 0)) {
-					C1[i][j] = 4;
-					C1[i][j + 1] = 1;
-				}
-				if ((i == j) && (i != 0)) {
-					C1[i][j - 1] = 1;
-					C1[i][j] = 4;
-					C1[i][j + 1] = 1;
-				}
-				if (j == n - 1) {
-					C1[i][j] = 3.0 * (F[i] - 2.0 * F[i + 1] + F[i + 2]) / pow(h, 2);
-				}
+			if ((i == j) && (i == 0))
+			{
+				C1[i][j] = 4;
+				C1[i][j + 1] = 1;
 			}
-		
-			Gauss(0, C1);
+			if ((i == j) && (i != 0))
+			{
+				C1[i][j - 1] = 1;
+				//cout << C1[i][j - 1] << endl;
+				C1[i][j] = 4;
+				C1[i][j + 1] = 1;
+			}
+			if (j == n - 1)
+			{
+				C1[i][j] = 3.0 * (F[i] - 2.0 * F[i + 1] + F[i + 2]) / pow(h, 2);
+
+			}
+
+
+		}
+
+
+
+
+
+	}
+	//for (int i = 0; i < n-1; i++)
+	//{
+	for (int i = 0; i < n - 1; i++)
+	{
+		for (int j = 0; j < n; j++)
+		{
+			cout << C1[i][j] << " ";
+		}
+		cout << endl;
+	}
+	Gauss(0, C1);
 
 			//Заполнение коэфф С
 			C[0] = 0;
 			C[n] = 0;
-			for (int i = 1; i < n; i++) {
+			for (int i = 1; i < n; i++) 
+			{
 				C[i] = C1[i - 1][n - 1];
+				//	cout << C1[i-1][n-1] << endl;
 			}
 
 			//заполнение А, B, D
-			for (int i = 0; i < n; i++) {
+			for (int i = 0; i < n; i++) 
+			{
 				A[i] = F[i];
 				B[i] = (F[i + 1] - F[i]) / h - h / 3.0 * (2.0 * C[i] + C[i + 1]);
 				D[i] = (C[i + 1] - C[i]) / 3.0 / h;
 			}
-
-		}
-	for (int i = 0; i < n-1; i++)
-	{
-
 	
 
 		
 	// C1[i][5] = cMatrix[i];
 	// cout << MatrixC[i][5] << endl;
-	}
+//	}
 	
 	//rtrtrdrtyrurgr
 
@@ -114,13 +135,13 @@ void Splain()
 				//file << x << "	" << Y << endl;
 		//	}
 		}
-		cout << Splain_[i] << endl;
+		//cout << Splain_[i] << endl;
 	}
 
 }
 
 int main (){
-	\
+	
 	//cout << B_Splain(0.5) << endl;
 	NeobhodimayaFunksia4tobiVMainNeLezt();
 	Splain();
