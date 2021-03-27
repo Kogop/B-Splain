@@ -20,7 +20,7 @@ double f(double x) {
 }
 //C[0] = 0; C[n] = 0
 
-
+int m = n;
 
 
 void Gauss(int k, double Matrix[n - 1][n]) {
@@ -50,9 +50,9 @@ int NeobhodimayaFunksia4tobiVMainNeLezt() {
 	/*while ((fabs(F[1] - Splain_[1]) > 0.001))
 	{*/
 
+	/*while (fabs(Splain_[1] - f(a + h / 2)) > 0.001) {*/
 
-
-		for (int i = 0; i < n + 2; i++)
+		for (int i = 0; i < m + 2; i++)
 		{
 			F[i] = f(a + i * h);
 			if (i < n)
@@ -62,9 +62,9 @@ int NeobhodimayaFunksia4tobiVMainNeLezt() {
 
 		}
 
-		for (int i = 0; i < n - 1; i++)  // delaem matrix C
+		for (int i = 0; i < m - 1; i++)  // delaem matrix C
 		{
-			for (int j = 0; j < n; j++)
+			for (int j = 0; j < m; j++)
 			{
 				if ((i == j) && (i == 0))
 				{
@@ -94,9 +94,11 @@ int NeobhodimayaFunksia4tobiVMainNeLezt() {
 		}
 		//for (int i = 0; i < n-1; i++)
 		//{
-		for (int i = 0; i < n - 1; i++)
+
+		// vivod matrix C
+		for (int i = 0; i < m - 1; i++)
 		{
-			for (int j = 0; j < n; j++)
+			for (int j = 0; j < m; j++)
 			{
 				cout << C1[i][j] << " ";
 			}
@@ -107,28 +109,33 @@ int NeobhodimayaFunksia4tobiVMainNeLezt() {
 
 
 		//Заполнение коэфф С
-		for (int i = 1; i < n; i++)
+		for (int i = 1; i < m; i++)
 		{
-			C[i] = C1[i - 1][n - 1];
+			C[i] = C1[i - 1][m - 1];
 			//	cout << C1[i-1][n-1] << endl;
 		}
-		C[n] = 0; C[0] = 0;
+		C[m] = 0; C[0] = 0;
 		//заполнение А, B, D
-		for (int i = 0; i < n; i++)
+		for (int i = 0; i < m; i++)
 		{
 			A[i] = F[i];
 			B[i] = (F[i + 1] - F[i]) / h - h / 3.0 * (2.0 * C[i] + C[i + 1]);
 			D[i] = (C[i + 1] - C[i]) / 3.0 / h;
 		}
-	//}
+		/*m = n*5;
+		if (m > 126) {
+			cout << "Выход за предел ограничения итераций\n";
+			return 0;
+		}*/
+	
 	return 1;
 }
-
+//do and vivod Splaina
 void Splain()
 {
 	for (double x = a; x <= b; x += h)
 	{
-		for (int i = 0; i < n; i++)
+		for (int i = 0; i < m; i++)
 		{
 			if ((x >= a + i * h) && (x < a + (i + 1) * h))
 			{
@@ -148,6 +155,16 @@ int main (){
 	//cout << "f=" << f(1) << endl;
 	NeobhodimayaFunksia4tobiVMainNeLezt();
 	Splain();
+	
+	for (int i = 0; i < 2; i++)
+	{
+		if (fabs(F[1] - Splain_[1]) > 0.001)
+		{
+			m = m * 5;
+			NeobhodimayaFunksia4tobiVMainNeLezt();
+			Splain();
+		}
+	}
 	/*while((fabs(F[1]-Splain_[1])>0.001)
 	{
 		n = n * 5;
